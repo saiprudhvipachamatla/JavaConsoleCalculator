@@ -1,22 +1,65 @@
-# Java Console Calculator
+import java.util.Scanner;
 
-## Objective
-Build a basic calculator using Java console I/O.
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char operator;
+        double number1, number2, result;
 
-## Features
-- Addition, Subtraction, Multiplication, Division
-- Loop for multiple operations
-- Handles invalid inputs
+        while (true) {
+            System.out.print("Enter operator (+, -, *, /) or 'q' to quit: ");
+            operator = sc.next().charAt(0);
 
-## Technologies Used
-- Java
-- Scanner class for input
-- Switch-case logic
+            if (operator == 'q') {
+                break;
+            }
 
-## Screenshots
-(Add console output screenshots in the `screenshots/` folder if needed.)
+            System.out.print("Enter first number: ");
+            number1 = sc.nextDouble();
+            System.out.print("Enter second number: ");
+            number2 = sc.nextDouble();
 
-## How to Run
-Compile:
-```bash
-javac Calculator.java
+            switch (operator) {
+                case '+':
+                    result = add(number1, number2);
+                    break;
+                case '-':
+                    result = subtract(number1, number2);
+                    break;
+                case '*':
+                    result = multiply(number1, number2);
+                    break;
+                case '/':
+                    result = divide(number1, number2);
+                    break;
+                default:
+                    System.out.println("Invalid operator!");
+                    continue;
+            }
+
+            System.out.println("Result: " + result);
+        }
+
+      
+    }
+
+    public static double add(double num1, double num2) {
+        return num1 + num2;
+    }
+
+    public static double subtract(double num1, double num2) {
+        return num1 - num2;
+    }
+
+    public static double multiply(double num1, double num2) {
+        return num1 * num2;
+    }
+
+    public static double divide(double num1, double num2) {
+        if (num2 == 0) {
+            System.out.println("Error! Division by zero is not allowed.");
+            return 0; 
+        }
+        return num1 / num2;
+    }
+}
